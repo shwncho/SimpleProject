@@ -3,6 +3,7 @@ package com.server.simple.service;
 import com.server.simple.domain.Post;
 import com.server.simple.repository.PostRepository;
 import com.server.simple.request.PostCreate;
+import com.server.simple.response.PostResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -58,7 +59,7 @@ class PostServiceTest {
         Long postId = 1L;
 
         //when
-        Post post = postService.get(requestPost.getId());
+        PostResponse post = postService.get(requestPost.getId());
 
         //then
         Assertions.assertNotNull(post);

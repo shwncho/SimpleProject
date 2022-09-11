@@ -2,6 +2,7 @@ package com.server.simple.controller;
 
 import com.server.simple.domain.Post;
 import com.server.simple.request.PostCreate;
+import com.server.simple.response.PostResponse;
 import com.server.simple.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +28,12 @@ public class PostController {
     }
 
     @GetMapping("/posts/{postId}")
-    public Post get(@PathVariable long postId){
-        Post post = postService.get(postId);
-        return post;
+    public PostResponse get(@PathVariable long postId){
+        // Request 클래스
+        // Response 클래스
+
+        PostResponse response = postService.get(postId);
+        return response;
     }
+
 }
