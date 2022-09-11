@@ -1,5 +1,6 @@
 package com.server.simple.controller;
 
+import com.server.simple.domain.Post;
 import com.server.simple.request.PostCreate;
 import com.server.simple.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,13 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/posts")
-    public Map<String, String> post(@RequestBody @Valid PostCreate request) {
+    public void post(@RequestBody @Valid PostCreate request) {
         postService.write(request);
-        return Map.of();
+    }
+
+    @GetMapping("/posts/{postId}")
+    public Post get(@PathVariable long postId){
+        Post post = postService.get(postId);
+        return post;
     }
 }
