@@ -1,5 +1,6 @@
 package com.server.simple.response;
 
+import com.server.simple.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,14 @@ public class PostResponse {
         this.id = id;
         this.title = title.substring(0,Math.min(title.length(),10));
         this.content = content;
+    }
+
+    public static PostResponse from(Post post){
+        return PostResponse.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .build();
     }
 
 
