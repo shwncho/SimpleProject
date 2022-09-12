@@ -3,6 +3,7 @@ package com.server.simple.service;
 import com.server.simple.domain.Post;
 import com.server.simple.repository.PostRepository;
 import com.server.simple.request.PostCreate;
+import com.server.simple.request.PostSearch;
 import com.server.simple.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,8 +44,8 @@ public class PostService {
     }
 
 
-    public List<PostResponse> getList(Pageable pageable) {
-        return postRepository.findAll(pageable).stream()
+    public List<PostResponse> getList(PostSearch postSearch) {
+        return postRepository.getList(postSearch).stream()
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }
