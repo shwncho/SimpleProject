@@ -49,7 +49,7 @@ class PostServiceTest {
         postService.write(postCreate);
 
         //then
-        Assertions.assertEquals(1L,postRepository.count());
+        assertEquals(1L,postRepository.count());
 
         Post post = postRepository.findAll().get(0);
         assertEquals("제목입니다.",post.getTitle());
@@ -71,7 +71,7 @@ class PostServiceTest {
         PostResponse post = postService.get(requestPost.getId());
 
         //then
-        Assertions.assertNotNull(post);
+        assertNotNull(post);
         assertEquals("foo",post.getTitle());
         assertEquals("bar",post.getContent());
     }
@@ -120,7 +120,7 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다 id=" + post.getId()));
-        Assertions.assertEquals("호돌걸", changedPost.getTitle());
+        assertEquals("호돌걸", changedPost.getTitle());
 
     }
 
@@ -145,8 +145,8 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다 id=" + post.getId()));
-        Assertions.assertEquals("호돌걸", changedPost.getTitle());
-        Assertions.assertEquals("반포자이", changedPost.getContent());
+        assertEquals("호돌걸", changedPost.getTitle());
+        assertEquals("반포자이", changedPost.getContent());
     }
 
     @Test
@@ -170,7 +170,25 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다 id=" + post.getId()));
-        Assertions.assertEquals("초가집", changedPost.getContent());
+        assertEquals("초가집", changedPost.getContent());
+    }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    void test7(){
+        //given
+        Post post = Post.builder()
+                .title("호돌맨")
+                .content("반포자이")
+                .build();
+
+        postRepository.save(post);
+
+        //when
+        postService.delete(post.getId());
+
+        //then
+        assertEquals(0,postRepository.count());
     }
 
 
