@@ -1,9 +1,7 @@
 package com.server.simple.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.server.simple.request.PostEdit;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -27,5 +25,20 @@ public class Post {
         this.content = content;
     }
 
+    public void change(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 
+    public PostEditor.PostEditorBuilder toEditor(){
+        return PostEditor.builder()
+                .title(title)
+                .content(content);
+    }
+
+
+    public void edit(PostEditor postEditor) {
+        title = postEditor.getTitle();
+        content = postEditor.getContent();
+    }
 }
