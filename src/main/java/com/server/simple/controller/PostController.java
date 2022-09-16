@@ -1,6 +1,7 @@
 package com.server.simple.controller;
 
 import com.server.simple.domain.Post;
+import com.server.simple.exception.InvalidRequest;
 import com.server.simple.request.PostCreate;
 import com.server.simple.request.PostEdit;
 import com.server.simple.request.PostSearch;
@@ -24,15 +25,14 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/posts")
-    public void post(@RequestBody @Valid PostCreate request) {
+    public void post(@RequestBody @Valid PostCreate request)
+    {
+        request.validate();
         postService.write(request);
     }
 
     @GetMapping("/posts/{postId}")
     public PostResponse get(@PathVariable long postId){
-        // Request 클래스
-        // Response 클래스
-
         return postService.get(postId);
     }
 
