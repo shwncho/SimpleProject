@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    
     public void write(PostCreate postCreate){
         Post post = Post.builder()
                 .title(postCreate.getTitle())

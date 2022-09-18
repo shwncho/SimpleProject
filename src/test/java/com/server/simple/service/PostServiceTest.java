@@ -7,15 +7,12 @@ import com.server.simple.request.PostCreate;
 import com.server.simple.request.PostEdit;
 import com.server.simple.request.PostSearch;
 import com.server.simple.response.PostResponse;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
