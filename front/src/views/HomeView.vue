@@ -1,22 +1,24 @@
 <script setup lang="ts">
   import axios from "axios";
   import {ref} from "vue";
+  import {useRouter} from "vue-router";
 
-  const posts = ref([]);
+  const posts= ref([]);
+  const router = useRouter();
 
   axios.get("http://localhost:8080/posts?page=1&&size=10")
   .then(response =>{
     response.data.forEach((r:any)=>{
       posts.value.push(r);
     })
-  })
+  });
 </script>
 
 <template>
   <ul>
     <li v-for="post in posts" :key="post.id">
       <div>
-        {{ post.title}}
+        <router-link :to="{ name: 'read', params: { postId: post.id } }">{{ post.title }}</router-link>
       </div>
       <div>
         {{ post.content}}
