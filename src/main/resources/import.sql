@@ -1,0 +1,1 @@
+INSERT INTO `users`(`name`,`email`,`password`,`created_at`) VALUES('simple','simple@gmail.com','1234','2022-12-25 21:22:00');
