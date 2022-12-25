@@ -1,5 +1,6 @@
 package com.server.simple.controller;
 
+import com.server.simple.config.data.UserSession;
 import com.server.simple.domain.Post;
 import com.server.simple.exception.InvalidRequest;
 import com.server.simple.request.PostCreate;
@@ -23,6 +24,12 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+
+    @GetMapping("/foo")
+    public Long foo(UserSession userSession){
+        log.info(">>>{}", userSession.id);
+        return userSession.id;
+    }
 
     @PostMapping("/posts")
     public void post(@RequestBody @Valid PostCreate request)
